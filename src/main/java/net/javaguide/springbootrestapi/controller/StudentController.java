@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("students")
 public class StudentController {
 
 
@@ -26,9 +27,9 @@ public class StudentController {
                 .body(student);
     }
 
-    // http://localhost:8080/list-students
+    // http://localhost:8080/students
 
-    @GetMapping("list-students")
+    @GetMapping
     public ResponseEntity <List <Student>> getStudents(){
         List<Student>students = new ArrayList<>();
         students.add(new Student(1, "Rmesh", "Fadaere"));
@@ -42,7 +43,7 @@ public class StudentController {
     // {id} - URI Template variable
     // http://localhost:8080/students/1
 
-    @GetMapping("students/{id}/{first-name}/{last-name}")
+    @GetMapping("{id}/{first-name}/{last-name}")
     public ResponseEntity<Student> studentPathVariable
             (@PathVariable("id") int studentId,
              @PathVariable("first-name") String firstName,
@@ -54,7 +55,7 @@ public class StudentController {
 
     // Sprint Boot REST API WITH Request Param aka Query parameter
     // http://localhost:8080/students/query?id=1
-    @GetMapping("students/query")
+    @GetMapping("query")
     public ResponseEntity <Student> studentRequestVariable(
             @RequestParam int id,
             @RequestParam String firstName,
@@ -66,7 +67,7 @@ public class StudentController {
     // Sprint Boot REST API that handles HTTP POST Request -creating new resource
     // @PostMapping and @requestBody
 
-    @PostMapping("students/create")
+    @PostMapping("create")
     //@ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity <Student> createStudent(@RequestBody  Student student){
         System.out.println(student.getId());
@@ -78,7 +79,7 @@ public class StudentController {
     // Sprint Boot REST API that handles HTTP PUT Request -updating existing resource
     // @PutMapping and @requestBody
 
-    @PutMapping("students/{id}/update")
+    @PutMapping("{id}/update")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity <Student>
     updateStudent(@RequestBody Student student, @PathVariable("id") int studentId){
@@ -91,7 +92,7 @@ public class StudentController {
     // Sprint Boot REST API that handles HTTP DELETE Request -delete existing resource
     // @DeleteMapping and @requestBody
 
-    @DeleteMapping("students/{id}/delete")
+    @DeleteMapping("{id}/delete")
     public ResponseEntity <String> deleteStudent( @PathVariable("id") int studentId){
         System.out.println(studentId);
         return ResponseEntity.ok("Student Deleted Successfully!");
