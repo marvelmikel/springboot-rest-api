@@ -51,7 +51,7 @@ public class StudentController {
         return new Student(id, "ramesh", "fatheder");
     }
 
-    // Sprint Boot REST API that handles HTTP POST Request
+    // Sprint Boot REST API that handles HTTP POST Request -creating new resource
     // @PostMapping and @requestBody
 
     @PostMapping("students/create")
@@ -62,5 +62,19 @@ public class StudentController {
         System.out.println(student.getLastName());
         return student;
     }
+
+    // Sprint Boot REST API that handles HTTP PUT Request -updating existing resource
+    // @PutMapping and @requestBody
+
+    @PutMapping("students/{id}/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Student updateStudent(@RequestBody Student student, @PathVariable("id") int studentId){
+        System.out.println(student.getFirstName());
+        System.out.println(student.getLastName());
+        return student;
+
+    }
+
+
 
 }
