@@ -75,6 +75,16 @@ public class StudentController {
 
     }
 
+    // Sprint Boot REST API that handles HTTP DELETE Request -delete existing resource
+    // @DeleteMapping and @requestBody
+
+    @DeleteMapping("students/{id}/delete")
+    public String deleteStudent( @PathVariable("id") int studentId){
+        System.out.println(studentId);
+        return "Student Deleted Successfully!";
+
+    }
+
 
 
 }
