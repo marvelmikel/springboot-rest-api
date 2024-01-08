@@ -16,13 +16,12 @@ public class StudentController {
     @GetMapping("student")
 
     public Student getStudent(){
-        Student student = new Student(
+
+        return new Student(
                 1,
                 "Ramesh",
                  "Fadatar"
         );
-
-        return student;
     }
 
     // http://localhost:8080/list-students
@@ -45,4 +44,13 @@ public class StudentController {
     public Student studentPathVariable(@PathVariable("id") int studentId){
         return new Student (studentId, "remesh", "fadhere");
     }
+
+    // Sprint Boot REST API WITH Request Param aka Query parameter
+    // http://localhost:8080/students/query?id=1
+    @GetMapping("students/query")
+    public Student studentRequestVariable(int id){
+        return new Student(id, "ramesh", "fatheder");
+    }
+
+
 }
