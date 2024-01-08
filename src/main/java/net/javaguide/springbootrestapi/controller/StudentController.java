@@ -2,6 +2,7 @@ package net.javaguide.springbootrestapi.controller;
 
 import net.javaguide.springbootrestapi.bean.Student;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -34,6 +35,14 @@ public class StudentController {
         students.add(new Student(3, "Rmesh", "Fadaere"));
         students.add(new Student(4, "Rmesh", "Fadaere"));
         return students;
+    }
 
+    // Sprint Boot REST API WITH Path Variable
+    // {id} - URI Template variable
+    // http://localhost:8080/students/1
+
+    @GetMapping("students/{id}")
+    public Student studentPathVariable(@PathVariable("id") int studentId){
+        return new Student (studentId, "remesh", "fadhere");
     }
 }
